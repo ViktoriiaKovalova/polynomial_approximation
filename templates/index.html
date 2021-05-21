@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} This app finds the polynomial approximation of 2x<sup>2</sup>-cosx-1 given the maximum power of polynom{% endblock %}</h1>
+
+<form method="post">
+    <div class="N">
+        <label for="N">Enter the value of N:</label>
+        <input  name="N" type="number"
+               placeholder="" class="form-control"
+               value="{{ request.form['N'] }}"
+               min="0" max="50"></input>
+    </div>
+    <button style="margin-top:1em" type="submit" class="btn btn-primary">Calculate</button>
+</form>
+
+    <div>
+        <a href = "/"><button style="margin-top:1em; margin-bottom:1em" class="btn btn-primary">Clear</button></a>
+    </div>
+
+
+    <div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% for message in messages %}
+        <h2>{{message}}</h2>
+    {% endfor %}
+    {% for p in pic %}
+        <img src="{{ p|safe }}"></img>
+    {% endfor %}
+{% endblock %}
